@@ -1,0 +1,19 @@
+###Input data----
+fdata=read.csv(choose.files(),header=TRUE)
+head(fdata)
+summary(fdata)
+
+###(1) Converted the latitude and longtitude data into the mesh---
+
+#delete missing value
+test=fdata[!(is.na(fdata$Lat))&!(is.na(fdata$Lon)),]
+sum(is.na(test$Lat)); sum(is.na(test$Lon));
+
+#delete abnormal value
+plot(test$Lon,test$Lat,xlim=c(110,150),ylim=c(10,50))
+boxplot(test$Lat)
+boxplot(test$Lon)
+
+test=test[test$Lat>=10&test$Lat<=50,]
+test=test[test$Lon>=110&test$Lon<=150,]
+range(test$Lon); range(test$Lat);
