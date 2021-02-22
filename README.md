@@ -2,7 +2,7 @@
 ## (1) 標準化CPUE的定義：
 * CPUE指的是catch per unit effort，中文意思是"單位努力漁獲量"。  
 * 標準化後的CPUE可以作為漁業管理的指標，用來評估目標漁獲物的資源豐度。   
-* 詳細請參考: https://ws.tfrin.gov.tw/Download.ashxu=LzAwMS9VcGxvYWQvT2xkRmlsZS9wdWJsaWMvZGF0YS8yMDA0MTAxOS0xNDQ5MTNfMTDmt7roq4fllq7kvY0ucGRm&n=MjAwNDEwMTktMTQ0OTEzXzEw5re66KuH5Zau5L2NLnBkZg%3d%3d  
+* 詳細理論介紹請參考https://www.tfrin.gov.tw/News_Content.aspx?n=300&sms=9025&s=25943 
 
 ## (2) 分析目標：
 為了了解台灣東北角的棒受網漁船主要漁獲物"鎖管"的資源變化，本研究利用標準化CPUE方式來推估鎖管生物量的年間變動，藉此作為漁業管理的依據。
