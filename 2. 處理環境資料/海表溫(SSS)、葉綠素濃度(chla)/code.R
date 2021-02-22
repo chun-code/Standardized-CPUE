@@ -1,11 +1,11 @@
 #處理環境資料
-#本分析需下載2009-2018年，每年每月的海表溫度(SST),海表鹽度(SSS),葉綠素a濃度(chla)資料。
-#SST和chla下載自noaa的MODIS-Aqua衛星系統，由於網站僅提供每日資料，需利用爬蟲下載大量資料，接著作數據整理。
-#資料來源https://oceandata.sci.gsfc.nasa.gov/MODIS-Aqua/L3SMI/
+#此分析需下載2009-2018年，每年每月的海表溫度(SST),海表鹽度(SSS),葉綠素a濃度(chla)資料。
+#SST和chla下載自noaa的MODIS-Aqua衛星系統，由於網站僅提供每日資料，需利用爬蟲下載大筆資料，接著作數據整理。
+#資料來源https://oceandata.sci.gsfc.nasa.gov/MODIS-Aqua/L3SMI/。
 #SSS資料另外呈現在"海表鹽度"資料夾。
 
 ####(1)從網站下載SST和chla資料----------
-##檔案路徑的規則請參考github"Download data from MODIS.docx"檔案
+##檔案路徑的規則請參考"Download data from MODIS.docx"檔案
 ##v1: 2009-2018 (except 2012, 2016)
 year_v1=c(2009,2010,2011,2013,2014,2015,2017,2018)
 for (i in year_v1) {
@@ -92,17 +92,15 @@ for (i in 2009:2018) {
 ##鹽度資料下載自HYCOM: "https://www.hycom.org/dataserver/gofs-3pt0/analysis"
 ##鹽度資料處理方式列在其他資料夾中
 for(i in 2009:2018){
-  filename_SST=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\pro_data\\SST&chla_",i,".csv",sep="")
-  filename_SSS=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\pro_data\\SSS_",i,".csv",sep="")
-  SST=read.csv(filename_SST)
-  SSS=read.csv(filename_SSS)
+  filename_SST=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\pro_data\\SST&chla_",i,".csv",sep=""); SST=read.csv(filename_SST)
+  filename_SSS=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\pro_data\\SSS_",i,".csv",sep=""); SSS=read.csv(filename_SSS)
   DATA=merge(x=SST,y=SSS,by=c("year","month","lat","lon"),all=TRUE)
   write.csv(DATA,file=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla&SSS_",i,".csv",sep=""),row.names=FALSE)
 }
 
 ##結合2009-2018資料
 table=NULL
-for (y in  2009:2018){
+for (y in 2009:2018){
 filename=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla&SSS_",y,".csv",sep="")
 fin_data=read.csv(filename)
 table=rbind(table,fin_data)
