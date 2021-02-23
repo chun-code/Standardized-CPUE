@@ -23,4 +23,5 @@
 環境資料包含2009-2018年每月的海表溫(SST)、海表鹽(SSS)、葉綠素濃度(chla)資料。資料源自兩種衛星的偵測值，下載自網路的開放平台。
 
 ## (4) 標準化CPUE方法：
-本研究使用泛線性模型(General Linear Model, GLM)和泛加成模型(General Additive Model, GAM)來進行CPUE標準化。兩種分析方式具有統計理論為依據，且時常用於推估漁獲物生物量，因此有相對多的文獻可以參考和比較。我們使用兩種模型進行分析，接著再利用Akaike information criterion (AIC)選擇套適最佳的模型來作CPUE標準化。 
+本研究使用泛線性模型(General Linear Model, GLM)和泛加成模型(General Additive Model, GAM)來進行CPUE標準化。兩種分析方式具有統計理論為依據，且時常用於推估漁獲物生物量，因此有相對多的文獻可以參考和比較。我們使用兩種模型進行分析，接著再利用Akaike information criterion (AIC)選擇套適最佳的模型來作CPUE標準化。
+
