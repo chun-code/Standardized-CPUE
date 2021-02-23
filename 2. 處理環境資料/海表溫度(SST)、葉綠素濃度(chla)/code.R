@@ -1,12 +1,12 @@
 #處理環境資料
 #本分析需下載2009-2018年，每年每月的海表溫度(SST),海表鹽度(SSS),葉綠素a濃度(chla)資料。
-#SST和chla下載自noaa的MODIS-Aqua衛星系統，由於網站僅提供每日資料，需利用網頁爬蟲下載大筆資料，接著作數據整理。
+#SST和chla下載自noaa的MODIS-Aqua衛星系統，由於網站僅提供每日資料，需利用網頁爬蟲方式下載大筆資料，接著作數據整理。
 #資料來源https://oceandata.sci.gsfc.nasa.gov/MODIS-Aqua/L3SMI/
 #SSS資料另外呈現在"海表鹽度(SSS)"資料夾中。
 
 ####(1)從網站下載SST和chla資料----------
 #下載的原始檔案為nc檔。
-#檔案路徑的規則請參考"Download data from MODIS.docx"
+#檔案路徑的規則請參考"Download data from MODIS.docx"。
 #依據檔案路徑的規則，分為v1和v2兩種爬蟲方式。
 
 ##v1: 2009-2018 (except 2012, 2016)
@@ -57,8 +57,8 @@ for (i in 2009:2018) { #年份
     ##讀取nc檔
     filename_SST = paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\nc\\SST\\",i,"_",j,".nc",sep="")
     filename_chla = paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\nc\\chla\\",i,"_",j,".nc",sep="")
-    data_SST = raster(filename_SST) #res(data_SST)
-    data_chla = raster(filename_chla) #res(data_chla)
+    data_SST = raster(filename_SST) 
+    data_chla = raster(filename_chla) 
     
     ##設定經緯度、網格化
     e = extent(119.1, 134.5, 20.1, 26.9) 
@@ -85,29 +85,29 @@ for (i in 2009:2018) { #年份
   year_data = rbind(year_data,tem_year_data)
   colnames(year_data) = c("year","month","lat","lon","SST","chla")
   #輸出2009-2018年12個月份的海表溫度和葉綠素a濃度資料，分年份紀錄在不同檔案
-  write.csv(year_data,file=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla_",i,".csv",sep=""),row.names=FALSE)
+  write.csv(year_data,file=paste("C:\\Users\\user\\Desktop\\StdCPUE\\data\\env_data\\SST&chla_",i,".csv",sep=""),row.names=FALSE)
 }
 
 ####(3)結合不同來源環境資料----------
 #鹽度資料下載自HYCOM: "https://www.hycom.org/dataserver/gofs-3pt0/analysis"
 #鹽度資料下載方式請參考"海表鹽度(SSS)"資料夾
 for(i in 2009:2018) {
-  filename_SST = paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\pro_data\\SST&chla_",i,".csv",sep="")
-  filename_SSS = paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\pro_data\\SSS_",i,".csv",sep="")
+  filename_SST = paste("C:\\Users\\user\\Desktop\\StdCPUE\\data\\env_data\\SST&chla_",i,".csv",sep="")
+  filename_SSS = paste("C:\\Users\\user\\Desktop\\StdCPUE\\data\\env_data\\SSS_",i,".csv",sep="")
   SST = read.csv(filename_SST)
   SSS = read.csv(filename_SSS)
   DATA = merge(x=SST,y=SSS,by=c("year","month","lat","lon"),all=TRUE)
-  write.csv(DATA,file=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla&SSS_",i,".csv",sep=""),row.names=FALSE)
+  write.csv(DATA,file=paste("C:\\Users\\user\\Desktop\\StdCPUE\\data\\env_data\\SST&chla&SSS_",i,".csv",sep=""),row.names=FALSE)
 }
 
 #結合2009-2018資料
 table = NULL
 for (y in 2009:2018) {
-filename=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla&SSS_",y,".csv",sep="")
+filename=paste("C:\\Users\\user\\Desktop\\StdCPUE\\data\\env_data\\SST&chla&SSS_",y,".csv",sep="")
 fin_data=read.csv(filename)
 table=rbind(table,fin_data)
 }
 #輸出2009-2018年12個月份的SST,chla,SSS資料
-write.csv(table,file="C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla&SSS.csv",row.names=TRUE)
+write.csv(table,file="C:\\Users\\user\\Desktop\\StdCPUE\\data\\environment_data.csv",row.names=TRUE)
 
   
