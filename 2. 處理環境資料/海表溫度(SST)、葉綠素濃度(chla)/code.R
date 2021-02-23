@@ -102,7 +102,7 @@ for(i in 2009:2018) {
 
 #結合2009-2018資料
 table = NULL
-for (y in  2009:2018) {
+for (y in 2009:2018) {
 filename=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla&SSS_",y,".csv",sep="")
 fin_data=read.csv(filename)
 table=rbind(table,fin_data)
