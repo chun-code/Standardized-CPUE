@@ -196,4 +196,7 @@ colnames(table12)=c("month","Lon","Lat","SSS")
 table_2014=rbind(table1,table2,table3,tableD,table5,table6,table7,table8,table9,table10,table11,table12) ###!!
 table_2014=cbind(rep(2014,nrow(table_2014)),table_2014) ###!!
 colnames(table_2014)=c("year","month","lon","lat","SSS")
+#輸出2014年12個月份的海表鹽度資料
 write.csv(table_2014,file=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\pro_data\\SSS_2014.csv",sep=""),row.names=FALSE) ###!!
+
+
