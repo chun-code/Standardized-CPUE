@@ -1,6 +1,6 @@
 ##GAM和GLM分析
 ####(1) 輸入資料、整理資料----
-data = read.csv("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\com_data.csv",header=TRUE)
+data = read.csv("C:\\Users\\user\\Desktop\\StdCPUE\\data\\final_data.csv",header=TRUE)
 
 #選取year,month,SST.boat.,sp1,Tonnage.A,HP.A,Light.A,area,cluster11,cluster12,cluster13,chla,SSS欄位作後續分析
 data = data[,c(1,2,9,10,21,22,23,24,25,26,27,29,30)]
