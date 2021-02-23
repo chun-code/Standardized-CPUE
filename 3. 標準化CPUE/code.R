@@ -28,31 +28,30 @@ fin_data = data
 library(MASS)
 glm11 = glm(formula=log(fin_data$uro_catch)~factor(fin_data$Year)+factor(fin_data$Month)+fin_data$SST.boat.+factor(fin_data$Light.A)+
           factor(fin_data$area)+factor(fin_data$cluster11)+factor(fin_data$chla)+factor(fin_data$SSS)+
-          factor(fin_data$Month):factor(fin_data$area),family='Gamma',data=fin_data) #11 cluster 
+          factor(fin_data$Month):factor(fin_data$area),family='Gamma',data=fin_data) #11 cluster (AIC:34116.42)
 
 glm12 = glm(formula=log(fin_data$uro_catch)~factor(fin_data$Year)+factor(fin_data$Month)+fin_data$SST.boat.+factor(fin_data$Light.A)+
             factor(fin_data$area)+factor(fin_data$cluster12)+factor(fin_data$chla)+factor(fin_data$SSS)+
-            factor(fin_data$Month):factor(fin_data$area),family='Gamma',data=fin_data) #12 cluster
+            factor(fin_data$Month):factor(fin_data$area),family='Gamma',data=fin_data) #12 cluster (AIC:32474.56)
 
 glm13 = glm(formula=log(fin_data$uro_catch)~factor(fin_data$Year)+factor(fin_data$Month)+fin_data$SST.boat.+factor(fin_data$Light.A)+
             factor(fin_data$area)+factor(fin_data$cluster13)+factor(fin_data$chla)+factor(fin_data$SSS)+
-            factor(fin_data$Month):factor(fin_data$area),family='Gamma',data=fin_data) #13 cluster
+            factor(fin_data$Month):factor(fin_data$area),family='Gamma',data=fin_data) #13 cluster (AIC:33832.27)
 #GAM
 library(nlme)
 library(mgcv)
 gam11 = gam(formula=log(fin_data$uro_catch)~s(fin_data$Year)+s(fin_data$Month)+s(fin_data$SST.boat.)+s(fin_data$Tonnage.A,k=5)+
             s(fin_data$area,k=3)+s(fin_data$cluster11)+s(fin_data$chla)+s(fin_data$SSS)+
-            s(fin_data$Month,by=fin_data$area),family='Gamma',data=fin_data) #11 cluster
+            s(fin_data$Month,by=fin_data$area),family='Gamma',data=fin_data) #11 cluster (AIC:34724.69)
 
 gam12 = gam(formula=log(fin_data$uro_catch)~s(fin_data$Year)+s(fin_data$Month)+s(fin_data$SST.boat.)+s(fin_data$Tonnage.A,k=5)+
             s(fin_data$area,k=3)+s(fin_data$cluster12)+s(fin_data$chla)+s(fin_data$SSS)+
-            s(fin_data$Month,by=fin_data$area),family='Gamma',data=fin_data) #12 cluster
+            s(fin_data$Month,by=fin_data$area),family='Gamma',data=fin_data) #12 cluster (AIC:34725.15)
 
 gam13 = gam(formula=log(fin_data$uro_catch)~s(fin_data$Year)+s(fin_data$Month)+s(fin_data$SST.boat.)+s(fin_data$Tonnage.A,k=5)+
             s(fin_data$area,k=3)+s(fin_data$cluster13)+s(fin_data$chla)+s(fin_data$SSS)+
-            s(fin_data$Month,by=fin_data$area),family='Gamma',data=fin_data) #13 cluster
-#結果顯示以GLM和使用cluster12變數狀況下，有最小的AIC值。
-#因此選擇此模型來作鎖管物種的標準化CPUE。
+            s(fin_data$Month,by=fin_data$area),family='Gamma',data=fin_data) #13 cluster (AIC:24768.93)
+#結果顯示以GLM和使用cluster12變數狀況下，有最小的AIC值，因此選擇此模型來作鎖管物種的標準化CPUE。
 
 ####(4) 診斷模型表現----
 par(mfrow=c(2,2))
