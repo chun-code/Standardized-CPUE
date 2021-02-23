@@ -139,7 +139,7 @@ for (y in 1:length(year)) {
   }
 }
 
-###(6)儲存整理後漁業資料
+###(6)輸出成最終資料，之後會套入模型進行標準化CPUE。
 write.csv(result,file="C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\com_data.csv",row.names=FALSE)
 
 
