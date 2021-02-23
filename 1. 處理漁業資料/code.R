@@ -1,4 +1,5 @@
 #處理原始的漁業資料(共23個欄位，25622筆資料，每列代表每一作業航次的紀錄資料)
+#需要調整的資料：
 #Lat,Lon經緯度：作0.2度網格化。  
 #area：後續新增的欄位，代表漁場，可以利用經緯度資料取得。漁民會在不同季節於特定漁場作業，不同漁場環境對CPUE有相異的影響，因此"漁場因子"可作為反應CPUE的變數之一。  
 #cluster：後續新增的欄位，代表漁獲組成，可以根據每一航次中11種漁獲物的組成比例計算取得。透過每一航次的漁獲組成可以了解漁民的捕撈策略，
@@ -6,7 +7,7 @@
 #SST(boat)船測水溫：填補遺漏值。  
 #spe1 鎖管捕獲量資料：根據年月日、網格化經緯度作加總，預期獲得鎖管每年每月、每一作業網格的捕獲量資料。  
 
-fdata = read.csv(choose.files(),header=TRUE)
+fdata = read.csv(choose.files(),header=TRUE) #選擇fishery_data
 head(fdata)
 summary(fdata)
 
@@ -95,7 +96,7 @@ fdata_clu$cluster12 = kmeans.cluster12$cluster
 fdata_clu$cluster13 = kmeans.cluster13$cluster
 
 ###(4)與環境資料合併---------
-env_data = read.csv("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla&SSS.csv",header=TRUE)
+env_data = read.csv("C:\\Users\\user\\Desktop\\StdCPUE\\data\\environment_data.csv",header=TRUE)
 colnames(env_data) = c("Year","Month","tran_Lat","tran_Lon","SST","chla","SSS")
 fdata_env = merge(x=fdata_clu,y=env_data,by=c("Year","Month","tran_Lat","tran_Lon"),all.x =TRUE) 
 
@@ -134,6 +135,7 @@ for (y in 1:length(year)) {
   }
 }
 
-###(6)輸出成最終資料，之後會套入模型進行標準化CPUE。
-write.csv(result,file="C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\com_data.csv",row.names=FALSE)
+###(6)輸出成最終資料，之後會套入模型進行標準化CPUE---------
+#final_data可以在"data"資料夾中查看。
+write.csv(result,file="C:\\Users\\user\\Desktop\\StdCPUE\\data\\final_data.csv",row.names=FALSE)
 
