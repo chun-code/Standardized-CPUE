@@ -1,12 +1,12 @@
 #處理海表鹽度(SSS)資料
-#下載自HYCOM衛星系統，資料以每日為單位，依據不同月份合併在1-2個檔案中，後續會依據不同年份進行資料整理。
-#來源: https://www.hycom.org/dataserver/gofs-3pt0/analysis
-#以下以4月份為例，###!!記號代表需依據不同月份更改code
+#下載自HYCOM衛星系統，資料以每日為單位，不同月份可能存放在1至2個檔案中，後續會依據不同年份進行資料整理。
+#資料來源: https://www.hycom.org/dataserver/gofs-3pt0/analysis。
+#以下以4月份為例，###!!記號代表需依據不同月份更改code。
 
 library(ncdf4)
 library(raster)
-filename_SSS_a = paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\nc\\2014_0101_0404.nc",sep="")  ###!!
-filename_SSS_b = paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\nc\\2014_0405_1231.nc",sep="")  ###!!
+filename_SSS_a = paste("C:\\Users\\user\\Desktop\\StdCPUE\\data\\env_data\\nc\\2014_0101_0404.nc",sep="")  ###!!
+filename_SSS_b = paste("C:\\Users\\user\\Desktop\\StdCPUE\\data\\env_data\\nc\\2014_0405_1231.nc",sep="")  ###!!
 
 ###讀取nc檔資料-----
 data_a = brick(filename_SSS_a) #brick to get time series of data
@@ -197,6 +197,6 @@ table_2014=rbind(table1,table2,table3,tableD,table5,table6,table7,table8,table9,
 table_2014=cbind(rep(2014,nrow(table_2014)),table_2014) ###!!
 colnames(table_2014)=c("year","month","lon","lat","SSS")
 #輸出2014年12個月份的海表鹽度資料
-write.csv(table_2014,file=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\pro_data\\SSS_2014.csv",sep=""),row.names=FALSE) ###!!
+write.csv(table_2014,file=paste("C:\\Users\\user\\Desktop\\StdCPUE\\data\\env_data\\SSS_2014.csv",sep=""),row.names=FALSE) ###!!
 
 
