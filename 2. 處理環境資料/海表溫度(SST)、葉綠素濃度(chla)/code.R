@@ -87,6 +87,7 @@ for (i in 2009:2018) { #年份
   #輸出2009-2018年12個月份的海表溫度和葉綠素a濃度資料，分年份紀錄在不同檔案
   write.csv(year_data,file=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla_",i,".csv",sep=""),row.names=FALSE)
 }
+
 ####(3)結合不同來源環境資料----------
 #鹽度資料下載自HYCOM: "https://www.hycom.org/dataserver/gofs-3pt0/analysis"
 #鹽度資料下載方式請參考"海表鹽度(SSS)"資料夾
