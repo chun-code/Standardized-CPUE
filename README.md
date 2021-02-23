@@ -25,3 +25,7 @@
 ## (4) 標準化CPUE方法：
 本研究使用泛線性模型(General Linear Model, GLM)和泛加成模型(General Additive Model, GAM)來進行CPUE標準化。兩種分析方式具有統計理論為依據，且時常用於推估漁獲物生物量，因此有相對多的文獻可以參考和比較。我們使用兩種模型進行分析，接著再利用Akaike information criterion (AIC)選擇套適最佳的模型來作CPUE標準化。
 
+## (5) 分析流程：
+1. 處理漁業資料：將原始的漁業資料(Standardized-CPUE > data > raw data > fishery_data.csv)作組織和清理，整理出後續分析有用的漁業資訊，再與環境資料結合成一個csv檔輸出(Standardized-CPUE > data > organized data > final_data.csv)。
+2. 處理環境資料：利用爬蟲方式下載網路大量衛星資料(Standardized-CPUE > data > raw data > environment_data.csv)，同樣的也需要作後續的數據整理，包括網格化、依據時間和網格作平均值等。
+4. 標準化CPUR：利用整理好的最終數據(Standardized-CPUE > data > organized data > final_data.csv)套入GLM和GAM模型進行標準化CPUE，並且診斷模型套適狀況和繪圖呈現結果。
