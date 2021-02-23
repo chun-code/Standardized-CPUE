@@ -14,12 +14,10 @@ for (i in year_v1) {
     month_code_v1 = c("001","032","060","091","121","152","182","213","244","274","305","335")
     file_code_v1 = c("031","059","090","120","151","181","212","243","273","304","334","365")
     file_month_Nam = c(1:12)
-    
     #SST
     urls_SST = paste("https://oceandata.sci.gsfc.nasa.gov/cgi/getfile/A",i,month_code_v1[j],i,file_code_v1[j],".L3m_MO_SST_sst_9km.nc",sep="") 
     filename_SST = paste("F:/test/nc/SST/",i,"_",file_month_Nam[j],".nc",sep="")
     download.file(urls_SST,filename_SST,mod="wb")
-    
     #chl-a
     urls_chla = paste("https://oceandata.sci.gsfc.nasa.gov/cgi/getfile/A",i,month_code_v1[j],i,file_code_v1[j],".L3m_MO_CHL_chlor_a_9km.nc",sep="") 
     filename_chla = paste("F:/test/nc/chla/",i,"_",file_month_Nam[j],".nc",sep="")
@@ -33,7 +31,6 @@ for (i in year_v2) {
     month_code_v2 = c("001","032","061","092","122","153","183","214","245","275","306","336")
     file_code_v2 = c("031","060","091","121","152","182","213","244","274","305","335","366")
     file_month_Nam = c(1:12)
-    
     #SST
     urls_SST = paste("https://oceandata.sci.gsfc.nasa.gov/cgi/getfile/A",i,month_code_v2[j],i,file_code_v2[j],".L3m_MO_SST_sst_9km.nc",sep="") 
     filename_SST = paste("F:/test/nc/SST/",i,"_",file_month_Nam[j],".nc",sep="")
@@ -45,32 +42,31 @@ for (i in year_v2) {
   }
 }
 
-##(2)讀取、整理溫度和葉綠素資料----------
+####(2)讀取、整理溫度和葉綠素資料----------
 library(raster)
 library(ncdf4)
-for (i in 2009:2018) {
+for (i in 2009:2018) { #年份
   year = as.character(2009:2018)
   year_data = NULL
   month_data = NULL
   
-  for(j in 1:12){
+  for(j in 1:12){ #月份
     month = c("Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec")
-    ##read NetCDF file
+    ##讀取nc檔
     filename_SST = paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\nc\\SST\\",i,"_",j,".nc",sep="")
     filename_chla = paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\nc\\chla\\",i,"_",j,".nc",sep="")
     data_SST = raster(filename_SST) #res(data_SST)
     data_chla = raster(filename_chla) #res(data_chla)
     
-    ##set up an initial "sampling raster"
+    ##設定經緯度、網格化
     e = extent(119.1, 134.5, 20.1, 26.9) 
     e = raster(e,nrows=1,ncols=1,crs=data_SST@crs)
-    res(e) = 0.2  #set resolution which we want
+    res(e) = 0.2  #0.2度網格
     values(e) = 0
-    ##resample raw rasterdata in initial data
     agg_SST = resample(data_SST,e,methode="bilinear")
     agg_chla = resample(data_chla,e,methode="bilinear")
     
-    ##combine lat,lon and variable 
+    ##將經緯度和參數資料結合
     #SST
     co_SST = as.matrix(coordinates(agg_SST))
     df_SST = data.frame(Lon=co_SST[,1], Lat=co_SST[,2], SST=as.data.frame(agg_SST))
@@ -79,14 +75,14 @@ for (i in 2009:2018) {
     co_chla = as.matrix(coordinates(agg_chla))
     df_chla = data.frame(Lon=co_chla[,1], Lat=co_chla[,2], chla=as.data.frame(agg_chla))
     colnames(df_chla) = c("Lon","Lat","chla")
-    
-    ##combine month data(SST&chla)
+   
     tem_month_data = cbind(rep(j,length(df_SST$Lat)),df_SST$Lat,df_SST$Lon,df_SST$SST,df_chla$chla)
     month_data = rbind(month_data, tem_month_data)
   }
   tem_year_data = cbind(rep(i, nrow(month_data)),month_data)
   year_data = rbind(year_data,tem_year_data)
   colnames(year_data) = c("year","month","lat","lon","SST","chla")
+  #輸出2009-2018年12個月份的海表溫度和葉綠素a濃度資料，分年份紀錄在不同檔案
   write.csv(year_data,file=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla_",i,".csv",sep=""),row.names=FALSE)
 }
 ####(3)結合不同來源環境資料----------
@@ -108,6 +104,7 @@ filename=paste("C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla&
 fin_data=read.csv(filename)
 table=rbind(table,fin_data)
 }
+#輸出2009-2018年12個月份的SST,chla,SSS資料
 write.csv(table,file="C:\\Users\\user\\Desktop\\StdCPUE\\raw data\\env_data\\SST&chla&SSS.csv",row.names=TRUE)
 
   
