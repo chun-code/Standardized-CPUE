@@ -5,8 +5,10 @@
 #SSS資料另外呈現在"海表鹽度(SSS)"資料夾中。
 
 ####(1)從網站下載SST和chla資料----------
-#檔案路徑的規則請參考"Download data from MODIS.docx"檔案
-#下載的原始檔案為nc檔
+#下載的原始檔案為nc檔。
+#檔案路徑的規則請參考"Download data from MODIS.docx"
+#依據檔案路徑的規則，分為v1和v2兩種爬蟲方式。
+
 ##v1: 2009-2018 (except 2012, 2016)
 year_v1 = c(2009,2010,2011,2013,2014,2015,2017,2018)
 for (i in year_v1) {
