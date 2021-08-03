@@ -31,5 +31,6 @@
 4. 標準化CPUE：利用整理好的最終數據 (Standardized-CPUE > data > organized data > final_data.csv) 套入GLM和GAM模型進行標準化CPUE，並且診斷模型套適狀況和繪圖呈現結果。
 
 ## (5) 結果：
-結果顯示
 <img src="https://github.com/chun-code/Standardized-CPUE/blob/main/3.%20%E6%A8%99%E6%BA%96%E5%8C%96CPUE/standard%20CPUE%20%26%20nominal%20CPUE.png" width="500" height = "400">
+
+整體來看，鎖管在2009-2018年間資源量(CPUE)雖然有年間的變動，但是沒有明顯下降，且在近年(2016-2018年)有回升的趨勢，顯示資源狀態良好。
