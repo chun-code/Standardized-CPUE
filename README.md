@@ -29,3 +29,7 @@
 1. 處理漁業資料：將原始的漁業資料 (Standardized-CPUE > data > raw data > fishery_data.csv) 作組織和清理，整理出後續分析有用的漁業資訊，再與環境資料結合成一個csv檔輸出 (Standardized-CPUE > data > organized data > final_data.csv)。
 2. 處理環境資料：利用爬蟲方式下載網路大量衛星資料 (Standardized-CPUE > data > raw data > environment_data.csv)，同樣的也需要作後續的數據整理，包括網格化、依據時間和網格作平均值等。
 4. 標準化CPUE：利用整理好的最終數據 (Standardized-CPUE > data > organized data > final_data.csv) 套入GLM和GAM模型進行標準化CPUE，並且診斷模型套適狀況和繪圖呈現結果。
+
+## (5) 結果：
+結果顯示
+![image](https://github.com/chun-code/Standardized-CPUE/blob/main/3.%20%E6%A8%99%E6%BA%96%E5%8C%96CPUE/standard%20CPUE%20%26%20nominal%20CPUE.png)
