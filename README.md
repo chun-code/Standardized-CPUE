@@ -32,4 +32,4 @@
 
 ## (5) 結果：
 結果顯示
-<img src="https://github.com/chun-code/Standardized-CPUE/blob/main/3.%20%E6%A8%99%E6%BA%96%E5%8C%96CPUE/standard%20CPUE%20%26%20nominal%20CPUE.png" width="500" height = "300">
+<img src="https://github.com/chun-code/Standardized-CPUE/blob/main/3.%20%E6%A8%99%E6%BA%96%E5%8C%96CPUE/standard%20CPUE%20%26%20nominal%20CPUE.png" width="500" height = "400">
